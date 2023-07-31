@@ -39,10 +39,16 @@ public class Main {
 
 class Solution {
     void swapKth(int arr[], int n, int k) {
-        int i;
-        i=arr[k-1];
-        arr[k-1]=arr[n-k];
-        arr[n-k]=i;
+        int temp =0;
+        for(int i = 0; i<arr.length; i++){
+            if(i==k-1){
+                temp = arr[i];
+                arr[i] = arr[n-k];
+                arr[n-k] = temp;
+              return;
+            }
+             
+        }
         
     }
 
