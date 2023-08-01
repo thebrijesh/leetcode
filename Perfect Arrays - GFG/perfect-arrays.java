@@ -45,13 +45,13 @@ class Solution{
     {
         int j = a.length-1;
         // Complete the function
-        for(int i = 0;  i<=a.length/2; i++){
-            if(i != j){
+        for(int i = 0;  i<=a.length/2 && j>=a.length/2 ; i++){
+            
                 if(a[i]!=a[j]){
                     return false;
                 }
                 j--;
-            }
+            
             
         }
         return true;
