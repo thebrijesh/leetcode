@@ -42,10 +42,10 @@ class Solution
     { 
          int [] ans = new int[2];
          ans[0] = -1; ans[1] = -1;
-        int idx = 0;
+      
         for (int i = 0; i<a.length; i++){
             if(a[i]==key){
-                ans[idx++]  = i;
+                ans[0]  = i;
                 
                 break;
             }
@@ -53,7 +53,7 @@ class Solution
         
         for (int i =a.length-1; i>=0; i--){
             if(a[i]==key){
-                ans[idx]  = i;
+                ans[1]  = i;
                 break;
             }
         }
