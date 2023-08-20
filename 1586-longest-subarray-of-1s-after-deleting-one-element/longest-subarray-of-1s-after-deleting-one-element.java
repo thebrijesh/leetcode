@@ -5,15 +5,15 @@ class Solution {
         int pre =0;
         for(int i =0; i<nums.length; i++){
             if(nums[i] == 0){
-                
+                 max = Math.max(max,pre + current);
                 pre = current;
                 current = 0;
             }else{
                 current++;
-                max = Math.max(max,pre + current);
+               
             }
         }
-
+ max = Math.max(max,pre + current);
         if(current == nums.length){
             return current-1;
 
