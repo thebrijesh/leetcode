@@ -1,15 +1,19 @@
-class Solution {
+
     
-    public static boolean validMountainArray(int[] arr) {
-        if(arr.length < 3) return false;
-        int l = 0;
-        int r = arr.length - 1;
-        while(l +1 < arr.length -1 && arr[l] < arr[l + 1]){
-            l++;
+    class Solution {
+    public boolean validMountainArray(int[] A) {
+      if (A.length < 3) return false;
+      int start = 0;
+      int end = A.length-1;
+      while (start < end) {
+        if (A[start+1] > A[start]) {
+          start++;
+        } else if (A[end-1] > A[end]) { 
+          end--;
+        } else {
+          break;
         }
-        while(r -1 > 0 && arr[r] < arr[r - 1]) {
-            r--;
-        }
-        return l == r;
+      }
+      return start != 0 && end != A.length-1 && start == end;
     }
 }
