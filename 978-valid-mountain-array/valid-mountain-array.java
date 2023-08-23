@@ -1,27 +1,15 @@
 class Solution {
-    public boolean validMountainArray(int[] arr)  {
-        int a = 0;
-        int b = 0;
-        int flag = 0;
-        int flag1 = 0;
-
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i] > arr[i - 1] && flag == 0) {
-                a++;
-            } else if (arr[i] < arr[i - 1] && flag1 == 0) {
-                b++;
-                flag = 1;
-            } else {
-                return false;
-            }
+    
+    public static boolean validMountainArray(int[] arr) {
+        if(arr.length < 3) return false;
+        int l = 0;
+        int r = arr.length - 1;
+        while(l +1 < arr.length -1 && arr[l] < arr[l + 1]){
+            l++;
         }
-        if(a==0 || b ==0){
-            return false;
+        while(r -1 > 0 && arr[r] < arr[r - 1]) {
+            r--;
         }
-        if (a + b +1 == arr.length) {
-            return true;
-        }
-
-        return false;
+        return l == r;
     }
 }
