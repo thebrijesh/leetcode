@@ -1,12 +1,18 @@
 class Solution {
     public static String[] findRelativeRanks(int[] score) {
+int max = 0;
         HashMap<Integer, String> map = new HashMap<>();
         String[] str = new String[score.length];
-        int[] arr = new int[1000000];
+        for (var num : score) {
+            max = Math.max(max,num);
+
+        }
+        int[] arr = new int[max+1];
         for (var num : score) {
             arr[num] = 1;
 
         }
+
         int counter = 0;
         int j = 0;
         for (int i = arr.length - 1; i >= 0; i--) {
