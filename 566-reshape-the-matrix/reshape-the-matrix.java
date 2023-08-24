@@ -13,7 +13,7 @@ class Solution {
             for(int j =0; j<mat[i].length; j++){
                 array[k][l] = mat[i][j];
                 l++;
-                if(l > c-1){
+                if(l == c){
                     l=0;
                     k++;
                 }
