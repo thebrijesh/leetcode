@@ -11,9 +11,9 @@ class Solution {
         int stick = 0;
 
         for(int i = 0; i < time.length; i++){
-            if(time[i] > stick){
+            if(time[i] > i){
                 count++;
-                stick++;
+               
             }else{
                 break;
             }
