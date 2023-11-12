@@ -18,6 +18,6 @@ class Solution {
         if(secondMax * 2 <= max){
             return idx;
         }
-        return  (max>=secondMax*2)?idx:-1;
+        return -1;
     }
 }
