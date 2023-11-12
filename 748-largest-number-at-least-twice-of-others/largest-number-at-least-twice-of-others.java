@@ -15,10 +15,8 @@ class Solution {
             }
         }
 
-        System.out.println(max + " " + secondMax);
-        if(secondMax * 2 <= max){
-            return idx;
-        }
-        return -1;
+       
+       
+        return  (max>=secondMax*2)?idx:-1;
     }
 }
