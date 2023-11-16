@@ -23,12 +23,7 @@ class Solution {
             if(!list.isEmpty()) lists.add(list);
         }
 
-        for (List<Integer> num : lists) {
-            for (Integer numss : num) {
-                System.out.print(numss + " ");
-            }
-            System.out.println();
-        }
+      
 
         return lists;
     }
