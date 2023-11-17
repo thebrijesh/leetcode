@@ -17,7 +17,7 @@ class Solution {
          for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid[i].length; j++){
                
-               count += Math.abs(Math.min(rarr[i], carr[j]) - grid[i][j]);
+               count += Math.min(rarr[i], carr[j]) - grid[i][j];
                
             }
         }
