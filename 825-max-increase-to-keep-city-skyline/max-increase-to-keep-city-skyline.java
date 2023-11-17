@@ -10,7 +10,7 @@ class Solution {
             for(int j = 0; j < grid[i].length; j++){
                
                rarr[i] = Math.max(rarr[i], grid[i][j]);
-               carr[i] = Math.max(carr[i],grid[j][i]);
+               carr[j] = Math.max(carr[j],grid[i][j]);
             }
             System.out.println(rarr[i] + " " + carr[i]);
         }
