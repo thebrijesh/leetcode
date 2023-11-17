@@ -5,7 +5,6 @@ class Solution {
         int[] carr = new int[grid.length];
         int rmax = Integer.MIN_VALUE;
         int cmax = Integer.MIN_VALUE;
-        int min = Integer.MAX_VALUE;
         for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid[i].length; j++){
                
@@ -17,8 +16,8 @@ class Solution {
 
          for(int i = 0; i < grid.length; i++){
             for(int j = 0; j < grid[i].length; j++){
-               min = Math.min(rarr[i], carr[j]);
-               count += Math.abs(min - grid[i][j]);
+               
+               count += Math.abs(Math.min(rarr[i], carr[j]) - grid[i][j]);
                
             }
         }
