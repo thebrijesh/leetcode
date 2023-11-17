@@ -12,7 +12,7 @@ class Solution {
                rarr[i] = Math.max(rarr[i], grid[i][j]);
                carr[j] = Math.max(carr[j],grid[i][j]);
             }
-            System.out.println(rarr[i] + " " + carr[i]);
+            
         }
 
          for(int i = 0; i < grid.length; i++){
