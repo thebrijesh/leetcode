@@ -14,6 +14,7 @@ class Solution {
                 }
             }
             if (check)count++;
+            else return count;
         }
         return count;
     }
