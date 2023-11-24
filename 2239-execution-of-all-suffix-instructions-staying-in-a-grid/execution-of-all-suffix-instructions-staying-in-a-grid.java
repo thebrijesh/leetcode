@@ -1,46 +1,31 @@
 class Solution {
-    public int[] executeInstructions(int m, int[] startPos, String s) {
-        int [] hor = new int [2001];
-        int [] ver = new int [2001];
-        
-        Arrays.fill(hor, s.length());
-        Arrays.fill(ver, s.length());
-        
-        int h = 1000;
-        int v = 1000;
-        
-        int lB = startPos[1] + 1;
-        int rB = m - startPos[1];
-        int uB = startPos[0] + 1;
-        int dB = m - startPos[0];
-        
-        int [] result = new int [s.length()];
-        int res;
-        
-        char c;
-        
-        for (int i = s.length() - 1; i >= 0; --i){
-            c = s.charAt(i);
-            
-            if (c == 'U')
-                ver[v++] = i; 
-            else if (c == 'D')
-                ver[v--] = i;
-            else if (c == 'R')
-                hor[h--] = i;
-            else
-                hor[h++] = i;
-            
-            
-            res = s.length();
-            res = Math.min(res, hor[h - lB] );
-            res = Math.min(res, hor[h + rB] );
-            res = Math.min(res, ver[v - uB]);
-            res = Math.min(res, ver[v + dB]);
-            
-            result[i] = res - i;
+    public static int[] executeInstructions(int n, int[] nums, String s) {
+        char[] charr = s.toCharArray();
+        int[] arr = new int[s.length()];
+        for (int i = 0; i < charr.length; i++) {
+            int raw = nums[0];
+            int cal = nums[1];
+            int count = 0;
+            for (int j = i; j < charr.length; j++) {
+                if(charr[j] == 'R'){
+                    cal++;
+
+                } else if(charr[j] == 'D'){
+                    raw++;
+                }else if(charr[j] == 'L'){
+                    cal--;
+                }else if(charr[j] == 'U'){
+                    raw--;
+                }
+                if(raw >= 0 && cal >= 0 && raw < n && cal < n){
+                    count++;
+
+                }else {
+                   break;
+                }
+            }
+            arr[i] = count;
         }
-        
-        return result;
+    return arr;
     }
 }
