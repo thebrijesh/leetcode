@@ -7,16 +7,14 @@ class Solution {
         }
         int lsum = 0; int rsum = 0; int ans = 0;
         for(int i = 0; i < nums.length; i++){
-
-            if(i != 0) lsum += nums[i-1];
-            int lMulti = nums[i] * i;
-            
-            rsum = totalSum - (nums[i] + lsum);
-            int rMulti = nums[i] * ((nums.length -i)-1);
-
-            arr[i] = Math.abs(lsum - lMulti)+ Math.abs(rsum - rMulti);
-
+            ans = nums[i];
+          totalSum -= nums[i];
+           int lMulti = nums[i] * i;
+           int rMulti = nums[i] * ((nums.length -i)-1);
+          
+           nums[i] = Math.abs(lsum - lMulti)+ Math.abs(totalSum - rMulti);
+            lsum += ans;
         }
-        return arr;
+        return nums;      
     }
 }
