@@ -11,7 +11,7 @@ class Solution {
            int lMulti = nums[i] * i;
            int rMulti = nums[i] * ((nums.length -i)-1);
           
-           nums[i] = Math.abs(lsum - lMulti)+ Math.abs(totalSum - rMulti);
+           nums[i] = (lMulti - lsum) + (totalSum - rMulti);
             lsum += ans;
         }
         return nums;      
