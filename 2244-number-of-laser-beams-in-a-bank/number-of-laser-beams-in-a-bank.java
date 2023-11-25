@@ -16,7 +16,7 @@ class Solution {
             if(count > 0){
             ans += temp * count;
             temp = count;
-            System.out.println(count + " " + temp + " " + ans);  
+            
             }
             
                 
