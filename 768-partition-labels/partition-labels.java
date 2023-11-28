@@ -1,17 +1,15 @@
 class Solution {
     public List<Integer> partitionLabels(String s) {
         List<Integer> list = new ArrayList<>();
-        int[] sIdx = new int[26];
+       
         int[] eIdx = new int[26];
 
-        Arrays.fill(sIdx, -1);
+        
 
         for (int i = 0; i < s.length(); i++) {
             int value = s.charAt(i) - 'a';
             eIdx[value] = i;
-            if (sIdx[value] == -1) {
-                sIdx[value] = i;
-            }
+            
         }
 
         int si = 0;
