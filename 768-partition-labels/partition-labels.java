@@ -1,40 +1,30 @@
 class Solution {
-    public List<Integer> partitionLabels(String s) {
+public static List<Integer> partitionLabels(String s) {
+        char[] ch = new char[s.length()];
+        ch = s.toCharArray();
         List<Integer> list = new ArrayList<>();
-       
-        int[] eIdx = new int[26];
-
+        int[] eIdx = new int[27];
+        int j = 0;
         
-
-        for (int i = 0; i < s.length(); i++) {
-            int value = s.charAt(i) - 'a';
+        for (int i = 0; i < ch.length; i++) {
+            int value = ch[i] - 97;
             eIdx[value] = i;
-            
         }
-
-        int si = 0;
-        int ei = 0;
-        int max = 0;
+        
         int sPoint = 0;
-
-        while (si < s.length()) {
-            if (eIdx[s.charAt(ei) - 'a'] > max) {
-                max = eIdx[s.charAt(ei) - 'a'];
+        int max = 0;
+        
+        for (int i = 0; i < ch.length; i++) {
+            int value = ch[i] - 97;
+            if (eIdx[value] > max) {
+                max = eIdx[value];
             }
-            if (si == max) {
+            if (i == max) {
                 list.add(max - sPoint + 1);
-                sPoint = si + 1;
+                sPoint = i + 1;
             }
-            ei++;
-            if (ei == s.length()) {
-                break;
-            }
-            if (si == ei) {
-                ei++;
-            }
-            si++;
         }
-
+        
         return list;
     }
 }
