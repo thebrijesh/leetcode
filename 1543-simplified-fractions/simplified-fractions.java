@@ -1,7 +1,7 @@
 class Solution {
  public static List<String> simplifiedFractions(int n) {
         List<String> l = new ArrayList<>();
-        for (int i = 1; i <= n; i++) {
+        for (int i = 2; i <= n; i++) {
             for (int j = 1; j < i; j++) {
                 if (gcd(i, j) == 1) {
                     String s = "" + j + "/" + i;
