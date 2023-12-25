@@ -1,19 +1,22 @@
 class Solution {
     public int numSub(String s) {
-        char[] ch = s.toCharArray();
-        int count = 0;
-        int ans = 0;
-        for(int i = 0; i < ch.length; i++){
-            if(ch[i] == '1'){
-                count++;
+        char st[] = s.toCharArray();
+
+
+        long len = 0, ans = 0;
+        char curr = '1';
+        for(int i=0;i<st.length;i++){
+            if(st[i]==curr){
+                len++;
             }else{
+                ans += ((len)*(len+1))/2;
+                len = 0;
                 
-                
-                count = 0;
             }
-            ans = (ans + count) % 1000000007;
         }
-        
-        return ans;
+        ans += ((len)*(len+1))/2;
+
+        return (int)(ans%(1000000000+7));
+
     }
 }
