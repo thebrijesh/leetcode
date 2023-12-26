@@ -6,7 +6,7 @@ class Solution {
         return list;
     }
 
-        private static void backtrack(List<List<Integer>> list, List<Integer>   tempList, int [] nums){
+    private static void backtrack(List<List<Integer>> list, List<Integer>   tempList, int [] nums){
         if(tempList.size() == nums.length){
             list.add(new ArrayList<>(tempList));
         } else{
@@ -15,6 +15,7 @@ class Solution {
                 tempList.add(nums[i]);
                 backtrack(list, tempList, nums);
                 tempList.remove(tempList.size() - 1);
+                
             }
         }
     }
