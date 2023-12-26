@@ -19,6 +19,7 @@ class Solution {
 
         //include
         list.add(nums[idx]);
+        
         solve(list,idx+1,nums);
         list.remove(list.size()-1);
     }
