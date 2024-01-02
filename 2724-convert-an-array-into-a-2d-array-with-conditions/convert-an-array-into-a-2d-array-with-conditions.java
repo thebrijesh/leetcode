@@ -3,7 +3,7 @@ public  List<List<Integer>> findMatrix(int[] nums) {
         List<List<Integer>> list = new ArrayList<>();
 
         int max = 0;
-        int freq[] = new int[201];
+        int freq[] = new int[nums.length+1];
         for (int i = 0; i < nums.length; i++) {
             
             if (freq[nums[i]] == list.size()) {
