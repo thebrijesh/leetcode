@@ -12,11 +12,11 @@ class Solution {
                 }
             }
                 
-            if(count > 0){
+            if(count == 0)continue;
             ans += temp * count;
             temp = count;
             
-            }
+            
             
                 
             
