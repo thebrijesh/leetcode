@@ -1,6 +1,5 @@
 class Solution {
     public int numberOfBeams(String[] bank) {
-        int[] arr = new int[bank.length];
         int l = 0;
         int temp = 0;
         int ans = 0;
