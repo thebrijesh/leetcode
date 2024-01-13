@@ -20,7 +20,6 @@ class Solution {
         else {
             for (int i = start; i < candidates.length; i++) {
                 if (i > start && candidates[i] == candidates[i-1]) continue;
-                if (sum + candidates[i] > target)break;
 
                 list.add(candidates[i]);
                 combinationSum(candidates, target, list2d, list, i+1, sum + candidates[i]);
