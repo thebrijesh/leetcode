@@ -10,54 +10,25 @@
  */
 
 class Solution {
-
-    public static int binarySearch1(CustomFunction customfunction, int i, int z){
-        int start = 1;
-        int end = 1000;
-        int ans = 1001;
-        while (start <= end) {
-            int fmid = start + (end - start) / 2;
-            if (customfunction.f(i,fmid) == z) {
-                ans = fmid;
-                end = fmid - 1;
-            } else if (customfunction.f(i,fmid) < z) {
-                start = fmid + 1;
-            }else {
-                end = fmid - 1;
-            }
-        }
-        return ans;
-    }
-
-    public static int binarySearch2(CustomFunction customfunction, int i, int z){
-        int start = 1;
-        int end = 1000;
-        int ans = 0;
-        while (start <= end) {
-            int fmid = start + (end - start) / 2;
-            if (customfunction.f(i,fmid) == z) {
-                ans = fmid;
-                start = fmid + 1;
-            } else if (customfunction.f(i,fmid) < z) {
-                start = fmid + 1;
-            }else {
-                end = fmid - 1;
-            }
-        }
-        return ans;
-    }
     public List<List<Integer>> findSolution(CustomFunction customfunction, int z) {
-        List<List<Integer>> list = new ArrayList<>();
-        for(int i = 1; i <=1000; i++){
-            int start = binarySearch1(customfunction,i,z);
-            int end = binarySearch2(customfunction,i,z);
-
-            if(start <= end){
-                for(int j = start; j <= end; j++){
-                    list.add(Arrays.asList(i,j));
-                }
+        List<List<Integer>> ans= new ArrayList<>();
+        int i=1, j=1000;
+        while(i<=1000 && j>=1){
+            int res= customfunction.f(i,j);
+            if(res==z){
+                List<Integer> list= new ArrayList<>();
+                list.add(i);
+                list.add(j);
+                ans.add(list);
+                i++;
+                j--;
+            }else if(res>z){
+                j--;
+            }else if(res<z){
+                i++;
             }
         }
-        return list;
+
+        return ans;
     }
 }
