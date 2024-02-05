@@ -1,12 +1,14 @@
 class Solution {
     public int firstUniqChar(String s) {
-        for(int i = 0; i < s.length(); i++){
-            char c = s.charAt(i);
-            if(s.indexOf(c) == s.lastIndexOf(c)){
-                return i;
-            } 
-        }
+        int min = Integer.MAX_VALUE;
 
-        return -1;
+        for (char i = 'A'; i <= 'z'; i++) {
+            int index = s.indexOf(i);
+            if (index != -1 && s.indexOf(i) == s.lastIndexOf(i)) {
+
+                min = Math.min(min, index);
+            }
+        }
+        return min == Integer.MAX_VALUE ? -1 : min;
     }
 }
