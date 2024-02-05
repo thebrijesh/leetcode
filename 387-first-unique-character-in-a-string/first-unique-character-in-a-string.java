@@ -4,7 +4,7 @@ class Solution {
 
         for (char i = 'A'; i <= 'z'; i++) {
             int index = s.indexOf(i);
-            if (index != -1 && s.indexOf(i) == s.lastIndexOf(i)) {
+            if (index != -1 && index == s.lastIndexOf(i)) {
 
                 min = Math.min(min, index);
             }
