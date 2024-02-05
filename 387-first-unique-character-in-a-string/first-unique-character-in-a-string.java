@@ -2,7 +2,7 @@ class Solution {
     public int firstUniqChar(String s) {
         int min = Integer.MAX_VALUE;
 
-        for (char i = 'A'; i <= 'z'; i++) {
+        for (char i = 'a'; i <= 'z'; i++) {
             int index = s.indexOf(i);
             if (index != -1 && index == s.lastIndexOf(i)) {
 
