@@ -10,30 +10,27 @@
  */
 class Solution {
     public int numComponents(ListNode head, int[] nums) {
-int count = 0;
-        boolean flag = false;
-        HashSet<Integer> set = new HashSet<>(10001);
-        for (var num : nums) {
-            set.add(num);
+
+        boolean[] arr = new boolean[10001]; 
+        
+        // Setting the values in the nums as true in arr
+        for(int i = 0; i < nums.length; i++){
+            arr[nums[i]] = true; 
         }
-        while (head != null) {
 
+        int result = 0; 
 
-            if (set.contains(head.val)) {
-                if (!flag) {
-                    count++;
-                    flag = true;
-
+        while(head != null){
+            if(arr[head.val]){
+                while(head != null && arr[head.val]){
+                    head = head.next; 
                 }
-
-            } else {
-                flag = false;
+                result++; 
             }
-
-
-            head = head.next;
-
+            else{ 
+                head = head.next; 
+            }
         }
-        return count;
+        return result; 
     }
 }
