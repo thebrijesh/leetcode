@@ -10,25 +10,27 @@
  */
 class Solution {
     public int numComponents(ListNode head, int[] nums) {
-         int count = 0;
-        int i = 0;
+int count = 0;
         boolean flag = false;
+        HashSet<Integer> set = new HashSet<>(10001);
+        for (var num : nums) {
+            set.add(num);
+        }
         while (head != null) {
-            boolean get = false;
 
-            for (int j = 0; j < nums.length; j++) {
-                if (head.val == nums[j]) {
-                    if (!flag) {
-                        count++;
-                        flag = true;
 
-                    }
-                    get = true;
+            if (set.contains(head.val)) {
+                if (!flag) {
+                    count++;
+                    flag = true;
+
                 }
-            }
-            if (!get) {
+
+            } else {
                 flag = false;
             }
+
+
             head = head.next;
 
         }
