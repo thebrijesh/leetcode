@@ -14,19 +14,19 @@
  * }
  */
 class Solution {
-    int preSum = 0;
-    public int helper(TreeNode root){
-        if(root == null)return 0;
+    public void helper(TreeNode root,int[]preSum){
+        if(root == null)return;
         
        
-        helper(root.right);
-        root.val = preSum + root.val;
-        preSum = root.val;
-        helper(root.left);
-        return preSum;
+        helper(root.right,preSum);
+        root.val = preSum[0] + root.val;
+        preSum[0] = root.val;
+        helper(root.left,preSum);
+        
     }
     public TreeNode convertBST(TreeNode root) {
-        helper(root);
+        int[] preSum = new int[1];
+        helper(root,preSum);
         return root;
     }
 }
