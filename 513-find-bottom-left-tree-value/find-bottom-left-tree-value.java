@@ -41,7 +41,6 @@ class Solution {
 
     public int findBottomLeftValue(TreeNode root) {
         int val = height(root);
-        System.out.println(val + " ");
         nthLevel(root, val);
         return value;
     }
