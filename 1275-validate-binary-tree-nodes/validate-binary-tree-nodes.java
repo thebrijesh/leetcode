@@ -24,17 +24,21 @@ class Solution {
 
     public boolean validateBinaryTreeNodes(int n, int[] leftChild, int[] rightChild) {
         HashSet<Integer> set = new HashSet<>();
+        int child = 0;
         for (int i = 0; i < n; i++) {
             if (leftChild[i] != -1) {
-                if(!set.contains(leftChild[i]))set.add(leftChild[i]);
+                if(!set.contains(leftChild[i]) && leftChild[i]!= i)set.add(leftChild[i]);
                 else return false;
+                child++;
             }
             if (rightChild[i] != -1) {
-                if(!set.contains(rightChild[i]))set.add(rightChild[i]);
+                if(!set.contains(rightChild[i])&& rightChild[i]!= i)set.add(rightChild[i]);
                 else return false;
+                child++;
             }
 
         }
+        if(child != n-1)return false;
         int root = -1;
         int count = 0;
         for (int i = 0; i < n; i++) {
