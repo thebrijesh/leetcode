@@ -39,39 +39,23 @@ class Solution {
     }
 
     public boolean validateBinaryTreeNodes(int n, int[] leftChild, int[] rightChild) {
-        boolean[] childCount = new boolean[n]; // Tracks child count for each node
-
-        // Update child count based on leftChild
-        for (int child : leftChild) {
-            // Check if node has child
-            if (child != -1)
-                childCount[child] = true; // Mark left child as having a parent
-        }
-
-        // Update child count based on rightChild
-        for (int child : rightChild) {
-            // Check if node has child
-            if (child != -1) {
-                if (childCount[child]) // Check if the right child already has a parent
-                    return false;
-
-                childCount[child] = true; // Mark right child as having a parent
+        HashSet<Integer> set = new HashSet<>();
+        for(int i = 0; i < n; i++){
+            if(leftChild[i] != -1){
+                set.add(leftChild[i]);
+            }
+            if(rightChild[i] != -1){
+                set.add(rightChild[i]);
             }
         }
-
-        int root = -1; // Root node
-        for (int i = 0; i < n; ++i) {
-            if (!childCount[i]) {
-                if (root == -1)
-                    root = i; // Set root node if not assigned
-                else
-                    return false; // Multiple roots found, not a valid binary tree
+        int root = -1; int count = 0;
+        for(int i = 0; i < n; i++){
+            if(!set.contains(i)){
+                root = i;
+                count++;
             }
         }
-
-        if (root == -1)
-            return false; // No root found, not a valid binary tree
-
+        if(root == -1 || count > 1)return false;
         return isBinaryTreeValid(root, leftChild, rightChild); // Check if the tree is valid
     }
 
