@@ -20,9 +20,8 @@ class Solution {
     public int height(TreeNode root) {
         if (root == null)
             return 0;
+    
 
-        if (root.left == null && root.right == null)
-            return 0;
         return 1 + Math.max(height(root.left), height(root.right));
     }
 
@@ -41,8 +40,8 @@ class Solution {
     }
 
     public int findBottomLeftValue(TreeNode root) {
-        int val = height(root) + 1;
-        // System.out.println(val + " ");
+        int val = height(root);
+        System.out.println(val + " ");
         nthLevel(root, val);
         return value;
     }
