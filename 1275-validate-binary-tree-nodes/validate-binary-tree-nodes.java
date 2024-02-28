@@ -45,7 +45,7 @@ class Solution {
         }
         if (root == -1 || count > 1)
             return false;
-    
+        
         return isBinaryTreeValid(root, leftChild, rightChild, set); // Check if the tree is valid
     }
 
