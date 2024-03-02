@@ -68,7 +68,7 @@ class Solution {
             }
 
         }
-
+     
         while (curr2 != null) {
             if (curr2.left != null) {
 
