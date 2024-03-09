@@ -19,21 +19,21 @@ class Solution {
     //     return -1;
     // }
 
-    public boolean binarySearch(int target, int[] nums2) {
-        int start = 0;
-        int end = nums2.length;
-        while (start > end) {
-            int mid = start + (end - start) / 2;
-           System.out.print(0);
-            if (nums2[mid] == target)
-                return true;
-            else if (nums2[mid] > target)
-                start = mid + 1;
-            else
-                end = mid - 1;
+    // public boolean binarySearch(int target, int[] nums2) {
+    //     int start = 0;
+    //     int end = nums2.length;
+    //     while (start > end) {
+    //         int mid = start + (end - start) / 2;
+    //        System.out.print(0);
+    //         if (nums2[mid] == target)
+    //             return true;
+    //         else if (nums2[mid] > target)
+    //             start = mid + 1;
+    //         else
+    //             end = mid - 1;
 
-        }
+    //     }
         
-        return false;
-    }
+    //     return false;
+    // }
 }
