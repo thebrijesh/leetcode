@@ -1,20 +1,39 @@
 class Solution {
-   public static int getCommon(int[] nums1, int[] nums2) {
-        Set<Integer> set = new HashSet<>();
-int ans =-1;
-        for (var num:nums1) {
-            set.add(num);
+    public int getCommon(int[] nums1, int[] nums2) {
+    int i = 0, j = 0;
+    while(i < nums1.length && j < nums2.length ){
+        if(nums1[i] == nums2[j]) return nums1[i];
+        if(nums1[i] > nums2[j]) j++;
+        else i++;
+    }
+    return -1;
+}
+    // public int getCommon(int[] nums1, int[] nums2) {
+    //     for(int i = 0; i < nums1.length; i++){
+    //         boolean check = binarySearch(nums1[i],nums2);
+    //         if(check){
+    //             return nums1[i];
+    //         }
+    //     }
+            
+    //     return -1;
+    // }
 
-        }
-        System.out.println(set);
+    public boolean binarySearch(int target, int[] nums2) {
+        int start = 0;
+        int end = nums2.length;
+        while (start > end) {
+            int mid = start + (end - start) / 2;
+           System.out.print(0);
+            if (nums2[mid] == target)
+                return true;
+            else if (nums2[mid] > target)
+                start = mid + 1;
+            else
+                end = mid - 1;
 
-        for (var num:nums2) {
-            if(set.contains(num)){
-                ans =  num;
-                break;
-            }
         }
         
-return ans ;
+        return false;
     }
 }
