@@ -37,7 +37,6 @@ class Solution {
                 curr = curr.right;
             }
         }
-        System.out.print(list);
         return list.get(k-1);
     }
 }
