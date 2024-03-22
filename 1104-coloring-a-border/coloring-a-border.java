@@ -12,7 +12,7 @@ class Solution {
             return;
         visited[row][col]=true;
         boolean border = false;
-        if(row==0 || col==0 || row==grid.length-1 || col==grid[0].length-1 || grid[row-1][col]!=oldColor || grid[row+1][col]!=oldColor || grid[row][col-1]!=oldColor || grid[row][col+1]!=oldColor)
+        if( row==0 || col==0 || row==grid.length-1 || col==grid[0].length-1 || grid[row-1][col]!=oldColor || grid[row+1][col]!=oldColor || grid[row][col-1]!=oldColor || grid[row][col+1]!=oldColor)
             border=true;
         helper(grid,row+1,col,color,oldColor,visited);
         helper(grid,row-1,col,color,oldColor,visited);
