@@ -1,37 +1,24 @@
 class Solution {
-    public int[][] colorBorder(int[][] grid, int r0, int c0, int color) {
-        
-        int n = grid.length;
-        int m = grid[0].length;
-        
-        if (grid[r0][c0]==color)
-            return grid;
-        
-        boolean[][] visited = new boolean[n][m];
-        dfs(grid, r0, c0, grid[r0][c0], visited, color, n, m);
-        
+    public int[][] colorBorder(int[][] grid, int row, int col, int color) {
+        if(grid==null || grid.length==0)
+            return null;
+        boolean[][] visited = new boolean[grid.length][grid[0].length];
+        helper(grid,row,col,color,grid[row][col],visited);
         return grid;
-        
     }
-    
-    public void dfs(int[][] grid, int i, int j, int col, boolean[][] visited, int target, int n, int m){
-        
-        if (i>n-1 || i<0 || j>m-1 || j<0 || grid[i][j]!=col || visited[i][j])
+
+    private void helper(int[][] grid, int row,int col, int color, int oldColor, boolean[][] visited){
+        if(row<0 || row>=grid.length || col<0 || col>=grid[0].length || grid[row][col]!=oldColor || visited[row][col])
             return;
-        
-        visited[i][j] = true;
+        visited[row][col]=true;
         boolean border = false;
-        
-        if (i==0 || j==0 || j==m-1 || i==n-1 || grid[i+1][j]!=col || grid[i-1][j]!=col || grid[i][j-1]!=col || grid[i][j+1]!=col)
-            border = true;
-        
-        dfs(grid, i+1, j, col, visited, target, n, m);
-        dfs(grid, i-1, j, col, visited, target, n, m);
-        dfs(grid, i, j+1, col, visited, target, n, m);
-        dfs(grid, i, j-1, col, visited, target, n, m);
-        
-        if (border)
-            grid[i][j] = target;
-        
+        if(row==0 || col==0 || row==grid.length-1 || col==grid[0].length-1 || grid[row-1][col]!=oldColor || grid[row+1][col]!=oldColor || grid[row][col-1]!=oldColor || grid[row][col+1]!=oldColor)
+            border=true;
+        helper(grid,row+1,col,color,oldColor,visited);
+        helper(grid,row-1,col,color,oldColor,visited);
+        helper(grid,row,col-1,color,oldColor,visited);
+        helper(grid,row,col+1,color,oldColor,visited);
+        if(border)
+            grid[row][col]=color;
     }
 }
