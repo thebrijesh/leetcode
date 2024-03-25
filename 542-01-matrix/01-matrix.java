@@ -21,8 +21,8 @@ class Solution {
 
             if(j > 0 && mat[i][j-1] == -1){
                 mat[i][j-1] = mat[i][j]+1;
-                int[] temp = {i,j-1};
-                queue.add(temp);
+                // int[] temp = {i,j-1};
+                queue.add(new int[]{i,j-1});
             }
 
             if( j < mat[0].length-1 && mat[i][j+1] == -1){
