@@ -16,7 +16,7 @@ class Solution {
         
         HashSet<Integer> busNo = new HashSet<>();
         HashSet<Integer> busStop = new HashSet<>();
-        Queue<Integer> q = new LinkedList<>();
+        Queue<Integer> q = new ArrayDeque<>();
         int level = 0;
         q.add(source);
         busStop.add(source);
