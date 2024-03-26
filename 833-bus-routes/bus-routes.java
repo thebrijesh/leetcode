@@ -28,7 +28,7 @@ class Solution {
 
             while (size-- > 0) {
                 int val = q.remove();
-                busStop.add(val);
+                
                 if (val == target)
                     return level;
                 List<Integer> buses = map.get(val);
@@ -41,7 +41,7 @@ class Solution {
                             if (!busStop.contains(buss)) {
 
                                 q.add(buss);
-                                
+                                busStop.add(buss);
                             }
                         }
 
