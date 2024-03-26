@@ -1,6 +1,7 @@
 class Solution {
     public int numBusesToDestination(int[][] routes, int source, int target) {
-        if(source == target)return 0;
+        if (source == target)
+            return 0;
         HashMap<Integer, List<Integer>> map = new HashMap<>();
         for (int i = 0; i < routes.length; i++) {
             for (int j = 0; j < routes[i].length; j++) {
@@ -12,8 +13,9 @@ class Solution {
             }
 
         }
-        if(!map.containsKey(source) || !map.containsKey(target))return -1;
-        
+        if (!map.containsKey(source) || !map.containsKey(target))
+            return -1;
+
         HashSet<Integer> busNo = new HashSet<>();
         HashSet<Integer> busStop = new HashSet<>();
         Queue<Integer> q = new ArrayDeque<>();
@@ -30,18 +32,20 @@ class Solution {
                     return level;
                 List<Integer> buses = map.get(val);
                 for (int bus : buses) {
-                    if (busNo.contains(bus))
-                        continue;
-                    int arr[] = routes[bus];
+                    if (!busNo.contains(bus)) {
 
-                    for (int buss : arr) {
-                        if (busStop.contains(buss))
-                            continue;
-                        q.add(buss);
-                        busStop.add(buss);
+                        int arr[] = routes[bus];
+
+                        for (int buss : arr) {
+                            if (!busStop.contains(buss)) {
+
+                                q.add(buss);
+                                busStop.add(buss);
+                            }
+                        }
+
+                        busNo.add(bus);
                     }
-
-                    busNo.add(bus);
                 }
             }
             level++;
