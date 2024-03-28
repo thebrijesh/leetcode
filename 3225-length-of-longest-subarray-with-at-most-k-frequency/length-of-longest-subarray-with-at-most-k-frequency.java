@@ -6,15 +6,14 @@ class Solution {
         for (int i = 0; i < nums.length; i++) {
 
             map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
-            
-                
-                while (map.get(nums[i]) > k) {
-                    map.put(nums[st], map.getOrDefault(nums[st], 0) - 1);
 
-                    st++;
-                }
-            
-            max = Math.max(max, (i - st)+1);
+            while (map.get(nums[i]) > k) {
+                map.put(nums[st], map.getOrDefault(nums[st], 0) - 1);
+
+                st++;
+            }
+
+            max = Math.max(max, (i - st) + 1);
         }
         return max;
     }
