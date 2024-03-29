@@ -1,23 +1,15 @@
 class Solution {
-    public int longestEqualSubarray(List<Integer> list, int k) {
-        int s=0, maxFrequency=0;
+    public int longestEqualSubarray(List<Integer> nums, int k) {
 
-        Map<Integer, Integer> map = new HashMap<>();
-        
-        for(int e=0; e<list.size(); e++){
-            int val = list.get(e);
-            map.put(val, map.getOrDefault(val,0)+1);
-            maxFrequency = Math.max(maxFrequency, map.get(val));
-            
-            int extraElementCount = (e-s+1) - maxFrequency; 
-            
-            if(extraElementCount > k){
-                int num = list.get(s);
-                map.put(num, map.get(num)-1);
-                s++;
-            }
+        int n = nums.size(), left = 0, right = 0, ans = 0;
+        int[] count = new int[n + 1];
+        while (right < n) {
+            if (right - left - ans > k)
+               count[nums.get(left++)]--;  
+               
+            ans = Math.max(++count[nums.get(right++)], ans);   
         }
         
-        return maxFrequency;
+        return ans;
     }
 }
