@@ -5,7 +5,7 @@ class Solution {
         for (int num : nums) {
             maxi = Math.max(maxi, num);
         }
-        
+
         int i = 0, j = 0, cnt = 0;
         long ans = 0;
 
@@ -13,19 +13,18 @@ class Solution {
             if (nums[j] == maxi) {
                 cnt++;
             }
-            if (cnt >= k) {
-                while (cnt >= k) {
-                    ans += n - j;
-                    if (nums[i] == maxi) {
-                        cnt--;
-                    }
-                    i++;
+
+            while (cnt >= k) {
+                ans += n - j;
+                if (nums[i] == maxi) {
+                    cnt--;
                 }
+                i++;
             }
+
             j++;
         }
-        
+
         return ans;
     }
 }
-
