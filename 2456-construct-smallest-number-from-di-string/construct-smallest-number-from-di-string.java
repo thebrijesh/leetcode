@@ -1,25 +1,30 @@
 class Solution {
     public String smallestNumber(String pattern) {
-        StringBuilder ans = new StringBuilder("");
-        int num = 1; 
-        Stack<Integer> st = new Stack<>();
-        st.push(1); 
-        for(int i = 0 ; i < pattern.length() ; i++){
-            char ch = pattern.charAt(i);
-            if(ch == 'I'){
-                while(st.size() != 0){
-                    ans.append(st.pop()); 
-                }
-                num += 1;
-                st.push(num);
-            }else{
-                num += 1;
-                st.push(num);
+        int size = pattern.length();
+        char arr[] =  new char[size+1];
+        for(int i=0;i<=size;i++){
+            arr[i] = Character.forDigit(i+1, 10);
+        }
+        for(int i =0;i<size;i++){
+            int temp = i;
+            while(temp < size && pattern.charAt(temp) == 'D'){
+                temp++;   
             }
+            reverse(arr, i , temp);
+            if(i!= temp ) i = temp-1;
+
         }
-        while(st.size() != 0){
-            ans.append(st.pop());
-        }
-        return ans.toString();
+
+        return new String(arr);
+    }
+    public void reverse(char arr[] , int i  , int j){
+            while(i < j){
+                char temp = arr[i];
+                arr[i]= arr[j];
+                arr[j] = temp;
+                i++;
+                j--;
+            }  
+
     }
 }
