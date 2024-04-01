@@ -28,9 +28,6 @@ class Solution {
         boolean flag = true;
         while (hm != 0) {
             int kD = k;
-            if (curr == head) {
-                kD = k;
-            }
             currStart = curr;
             while (kD != 0 && curr != null) {
                 upcoming = curr.next;
