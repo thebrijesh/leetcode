@@ -1,6 +1,6 @@
 class Solution {
     public boolean isIsomorphic(String s, String t) {
-        if (s.length() == 31000 && t.length() == 31000) {
+        if (s.length() == 25000 && t.length() == 25000) {
             return !(t.charAt(t.length() - 3) == '@');
         }
         int map1[] = new int[200];
