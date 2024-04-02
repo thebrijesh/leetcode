@@ -34,7 +34,6 @@ class Solution {
                 temp = temp.next;
                 lists[min] = lists[min].next;
 
-                System.out.println(min);
             }
         }
         return ans.next;
