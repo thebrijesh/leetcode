@@ -16,9 +16,8 @@ class Solution {
             head = head.next;
         }
         ListNode firstv = head;  
-        head = head.next;
 
-        while(head != null ){
+        while(head.next != null ){
             temp = temp.next;
             head = head.next;
         }
