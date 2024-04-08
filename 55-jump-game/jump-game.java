@@ -1,20 +1,24 @@
 public class Solution {
     public boolean canJump(int[] nums) {
-        // Initially the final position is the last index
-    int finalPosition = nums.length - 1;
+    int[] dp = new int[nums.length];
 
-    // Start with the second last index
-    for (int idx = nums.length - 2; idx >= 0; idx--) {
-
-      // If you can reach the final position from this index
-      // update the final position flag
-      if (idx + nums[idx] >= finalPosition) {
-        finalPosition = idx;
-      }
+    return helper(nums,0,dp);
     }
 
-    // If we reach the first index, then we can
-    // make the jump possible
-    return finalPosition == 0;
+    public boolean helper(int[] nums,int idx,int[] dp){
+        if(idx == nums.length-1)return true;
+        if(dp[idx] != 0){
+            if(dp[idx] == 1)return true;
+            else return false;
+        }
+        for(int i = idx+1; i <= idx + nums[idx] && i < nums.length; i++){
+
+            if(helper(nums,i,dp)){
+                dp[idx] = 1;
+                return true;
+            }
+        }
+        dp[idx] = 2;
+        return false;
     }
 }
