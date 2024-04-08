@@ -1,15 +1,20 @@
 public class Solution {
     public boolean canJump(int[] nums) {
-        int maxReach = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (i > maxReach) {
-                return false;
-            }
-            maxReach = Math.max(maxReach, i + nums[i]);
-            if (maxReach >= nums.length - 1) {
-                return true;
-            }
-        }
-        return false;
+        // Initially the final position is the last index
+    int finalPosition = nums.length - 1;
+
+    // Start with the second last index
+    for (int idx = nums.length - 2; idx >= 0; idx--) {
+
+      // If you can reach the final position from this index
+      // update the final position flag
+      if (idx + nums[idx] >= finalPosition) {
+        finalPosition = idx;
+      }
+    }
+
+    // If we reach the first index, then we can
+    // make the jump possible
+    return finalPosition == 0;
     }
 }
