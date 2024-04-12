@@ -33,8 +33,7 @@ class Solution {
         }
 
         
-        System.out.println(y0 + " " +y1+ " " +y2 );
-        System.out.println(w0 + " " +w1+ " " +w2 );
+       
         ans = Math.min(ans,w1 + w2 + y1 + y0);
         ans = Math.min(ans,w1 + w2 + y0 + y2);
         ans = Math.min(ans,w0 + w2 + y1 + y2);
