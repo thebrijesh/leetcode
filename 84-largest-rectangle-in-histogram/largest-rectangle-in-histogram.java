@@ -1,38 +1,32 @@
 class Solution {
     public int largestRectangleArea(int[] height) {
-        Stack<Integer> stack = new Stack<>();
 
         int[] arr = new int[height.length];
+        arr[height.length - 1] = height.length;
+        for (int i = height.length - 2; i >= 0; i--) {
+            int temp = i + 1;
+            while (temp < height.length && height[temp] >= height[i])
+                temp = arr[temp];
 
-        for(int i = height.length-1; i >= 0; i--){
-         while(!stack.isEmpty() && height[stack.peek()] >= height[i])stack.pop();
-            if(!stack.isEmpty()){
-               
-                arr[i] = stack.peek();
-                stack.push(i);
-            }else{
-                stack.push(i);
-                arr[i] =height.length;
-            }
+            arr[i] = temp;
+
         }
         int[] arr1 = new int[height.length];
-        stack = new Stack<>();
-        int ans = 0;
-        for(int i = 0; i < height.length; i++){
-         while(!stack.isEmpty() && height[stack.peek()] >= height[i])stack.pop();
-            if(!stack.isEmpty()){
-               
-                arr1[i] = stack.peek();
-                stack.push(i);
-            }else{
-                stack.push(i);
-                arr1[i] =-1;
-            }
-            ans = Math.max(ans,(Math.abs(((arr[i]-1) - (arr1[i]+1)+1))) * height[i] );
-        }
-
-
+        arr1[0] = -1;
         
+        int ans = 0;
+         ans = Math.max(ans, (Math.abs(((arr[0] - 1) - (arr1[0] + 1) + 1))) * height[0]);
+
+        for (int i = 1; i < height.length; i++) {
+            int temp = i - 1;
+            while (temp >= 0 && height[temp] >= height[i])
+                temp = arr1[temp];
+
+            arr1[i] = temp;
+             ans = Math.max(ans, (Math.abs(((arr[i] - 1) - (arr1[i] + 1) + 1))) * height[i]);
+        }
+       
+
         return ans;
     }
 }
