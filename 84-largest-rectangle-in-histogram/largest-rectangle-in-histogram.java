@@ -17,6 +17,7 @@ class Solution {
         }
         int[] arr1 = new int[height.length];
         stack = new Stack<>();
+        int ans = 0;
         for(int i = 0; i < height.length; i++){
          while(!stack.isEmpty() && height[stack.peek()] >= height[i])stack.pop();
             if(!stack.isEmpty()){
@@ -27,11 +28,9 @@ class Solution {
                 stack.push(i);
                 arr1[i] =-1;
             }
+            ans = Math.max(ans,(Math.abs(((arr[i]-1) - (arr1[i]+1)+1))) * height[i] );
         }
-        int ans = 0;
-        for(int i = 0; i < height.length; i++){
-           ans = Math.max(ans,(Math.abs(((arr[i]-1) - (arr1[i]+1)+1))) * height[i] );
-        }
+
 
         
         return ans;
