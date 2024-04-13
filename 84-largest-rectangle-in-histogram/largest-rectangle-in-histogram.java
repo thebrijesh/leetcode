@@ -32,8 +32,7 @@ class Solution {
         for(int i = 0; i < height.length; i++){
            ans = Math.max(ans,(Math.abs(((arr[i]-1) - (arr1[i]+1)+1))) * height[i] );
         }
-        System.out.println(Arrays.toString(arr1));
-        System.out.println(Arrays.toString(arr));
+
         
         return ans;
     }
