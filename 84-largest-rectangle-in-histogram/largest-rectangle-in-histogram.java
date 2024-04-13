@@ -23,9 +23,10 @@ class Solution {
                 temp = arr1[temp];
 
             arr1[i] = temp;
-             ans = Math.max(ans, (Math.abs(((arr[i] - 1) - (arr1[i] + 1) + 1))) * height[i]);
+             ans = Math.max(ans, (Math.abs(((arr[i]) - (arr1[i] + 1)))) * height[i]);
         }
-       
+       System.out.println("arr1 " + Arrays.toString(arr1));
+        System.out.println("arr " + Arrays.toString(arr));
 
         return ans;
     }
