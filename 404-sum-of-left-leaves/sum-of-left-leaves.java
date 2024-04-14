@@ -29,9 +29,9 @@ class Solution {
                 p = p.left;
             } else {
 
-                
+                TreeNode node = q.remove();
 
-                p = q.remove().right;
+                p = node.right;
             }
         }
         return sum;
