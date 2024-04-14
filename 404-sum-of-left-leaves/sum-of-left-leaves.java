@@ -17,7 +17,7 @@ class Solution {
     public int sumOfLeftLeaves(TreeNode root) {
         Deque<TreeNode> q = new ArrayDeque<>();
         int sum = 0;
-        boolean flag = false;
+       
         TreeNode p = root;
         while(p != null || !q.isEmpty()){
             if(p!= null){
