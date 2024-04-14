@@ -19,7 +19,7 @@ class Solution {
         int sum = 0;
 
         TreeNode p = root;
-        while (p != null || !q.isEmpty()) {
+        while ( p != null || !q.isEmpty()) {
             if (p != null) {
                 q.add(p);
 
