@@ -2,7 +2,7 @@ class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
         ArrayList<Integer> arrl = new ArrayList<>();
         if(root == null) return arrl;
-        Deque<TreeNode> stack = new ArrayDeque<>();
+        Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
         while(!stack.isEmpty()){
             TreeNode current = stack.pop();
