@@ -15,13 +15,13 @@
  */
 class Solution {
     public int sumOfLeftLeaves(TreeNode root) {
-        Queue<TreeNode> q = new LinkedList<>();
+        Stack<TreeNode> stack = new Stack<>();
         int sum = 0;
 
         TreeNode p = root;
-        while ( p != null || !q.isEmpty()) {
+        while ( p != null || !stack.isEmpty()) {
             if (p != null) {
-                q.add(p);
+                stack.push(p);
 
                 if (p.left != null && (p.left.left == null && p.left.right == null)) {
                     sum += p.left.val;
@@ -29,7 +29,7 @@ class Solution {
                 p = p.left;
             } else {
 
-                TreeNode node = q.remove();
+                TreeNode node = stack.pop();
 
                 p = node.right;
             }
