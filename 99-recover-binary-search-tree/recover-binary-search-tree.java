@@ -38,9 +38,8 @@ class Solution {
                 if (pred.right == null) {
                     pred.right = curr;
                     curr = curr.left;
-                }
-
-                if (pred.right == curr) {
+                    continue;
+                }else {
                     pred.right = null;
                     if (pre != null  && curr.val < pre.val) {
                         if (first == null) {
