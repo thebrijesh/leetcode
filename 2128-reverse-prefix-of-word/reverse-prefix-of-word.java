@@ -1,11 +1,26 @@
 class Solution {
     public String reversePrefix(String word, char ch) {
-        int firstOccurence = word.indexOf(ch);
-        if(firstOccurence == -1){
-            return word;
+        char[] chars = word.toCharArray();
+
+        int chIndex = -1;
+        for(int i = 0; i < chars.length; i++) {
+            if(chars[i] == ch) {
+                chIndex = i;
+                break;
+            }
         }
-        
-        StringBuilder prefix = new StringBuilder(word.substring(0, firstOccurence+1));
-        return prefix.reverse().toString() + word.substring(firstOccurence+1);
+
+        int start = 0;
+        int end = chIndex;
+        while(start < end) {
+            char temp = chars[start];
+            chars[start] = chars[end];
+            chars[end] = temp;
+
+            start++;
+            end--;
+        }
+
+        return new String(chars);
     }
 }
