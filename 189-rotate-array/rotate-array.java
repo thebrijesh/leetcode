@@ -2,7 +2,6 @@ class Solution {
     public void rotate(int[] nums, int k) {
         int n = nums.length;
         reverse(nums,0,n-1);
-        System.out.print(Arrays.toString(nums));
         k = k % n;
 
         reverse(nums,0 , k-1);
