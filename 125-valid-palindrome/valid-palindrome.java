@@ -9,7 +9,6 @@ class Solution {
                 str.append(ch);
             }
         }
-        System.out.println(str.toString());
        return  check(str.toString());
     }
 
