@@ -1,26 +1,31 @@
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-        int target = 0;
+        List<List<Integer>> result = new ArrayList<>();
         Arrays.sort(nums);
-        Set<List<Integer>> s = new HashSet<>();
-        List<List<Integer>> output = new ArrayList<>();
-        for (int i = 0; i < nums.length; i++){
-            int j = i + 1;
-            int k = nums.length - 1;
-            while (j < k) {
-                int sum = nums[i] + nums[j] + nums[k];
-                if (sum == target) {
-                    s.add(Arrays.asList(nums[i], nums[j], nums[k]));
-                    j++;
-                    k--;
-                } else if (sum < target) {
-                    j++;
-                } else {
-                    k--;
-                }
-            }
+        for (int i = 0; i < nums.length - 2 && nums[i] <= 0; i++) {
+            if (i != 0 && nums[i] == nums[i - 1]) continue;
+            twoSum(-nums[i], nums, i + 1, result);
         }
-        output.addAll(s);
-        return output;
+        return result;
+    }
+
+    private void twoSum(int target, int[] nums, int startIndex, List<List<Integer>> result) {
+        int i = startIndex;
+        int j = nums.length - 1;
+        while (i < j) {
+            if (nums[i] + nums[j] < target) {
+                i++;
+                continue;
+            }
+            if (nums[i] + nums[j] > target) {
+                j--;
+                continue;
+            }
+            result.add(Arrays.asList(-target, nums[i], nums[j]));
+            i++;
+            j--;
+            while (j > i && nums[j] == nums[j + 1])
+                j--;
+        }
     }
 }
