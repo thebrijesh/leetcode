@@ -6,7 +6,7 @@ class Solution {
         for (int i = happiness.length - 1; i >= happiness.length - k; i--) {
 
             if (happiness[i] - count > 0) {
-                ans += (long) (happiness[i] - count);
+                ans +=  happiness[i] - count;
             }
 
             count++;
