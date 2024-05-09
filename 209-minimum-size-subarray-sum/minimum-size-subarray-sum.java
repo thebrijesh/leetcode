@@ -10,7 +10,7 @@ class Solution {
 
             while (sum >= s) {
                 min = Math.min(min, j - i);
-                System.out.println(min);
+                
                 sum -= a[i++];
             }
         }
