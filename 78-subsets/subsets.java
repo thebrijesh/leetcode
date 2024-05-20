@@ -14,14 +14,15 @@ class Solution {
             ans.add(new ArrayList<>(list));
             return;
         }
-        list.add(nums[idx]);
+        
         // exclude
         solve(list, idx + 1, nums);
 
         // include
-
-        list.remove(list.size() - 1);
+        list.add(nums[idx]);
         solve(list, idx + 1, nums);
+        list.remove(list.size() - 1);
+        
 
     }
 }
