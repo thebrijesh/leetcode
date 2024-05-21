@@ -11,7 +11,6 @@ class Solution {
                 temp.add(subset);
             }
             arr.addAll(temp);
-            System.out.println(arr);
         }
         return arr;
     }
