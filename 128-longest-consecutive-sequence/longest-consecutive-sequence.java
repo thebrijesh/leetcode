@@ -7,14 +7,14 @@ class Solution {
         int count = 0;
         int ans = 0;
 
-        for (int num : nums) {
+        for (int num : set) {
             int val = num-1;
             if (!set.contains(val)) {
                 
                 count = 0;
                 while (set.contains(val + 1)) {
                     count++;
-                   set.remove(val);
+                  
                     val += 1;
                 }
                 ans = Math.max(ans, count);
