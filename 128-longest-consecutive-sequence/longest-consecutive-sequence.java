@@ -8,9 +8,10 @@ class Solution {
         int ans = 0;
 
         for (int num : nums) {
-            if (!set.contains(num - 1)) {
-                int val = num;
-                count = 1;
+            int val = num-1;
+            if (!set.contains(val)) {
+                
+                count = 0;
                 while (set.contains(val + 1)) {
                     count++;
                    
