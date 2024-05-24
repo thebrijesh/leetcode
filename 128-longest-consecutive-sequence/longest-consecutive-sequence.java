@@ -13,12 +13,13 @@ class Solution {
                 count = 1;
                 while (set.contains(val + 1)) {
                     count++;
-                    set.remove(val);
+                   
                     val += 1;
                 }
+                ans = Math.max(ans, count);
             }
            
-            ans = Math.max(ans, count);
+            
 
         }
 
