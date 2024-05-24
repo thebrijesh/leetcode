@@ -13,6 +13,7 @@ class Solution {
                 count = 1;
                 while (set.contains(val + 1)) {
                     count++;
+                    set.remove(val);
                     val += 1;
                 }
             }
