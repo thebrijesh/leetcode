@@ -11,7 +11,6 @@ class Solution {
         if(i > n)return;
 
         if(i <= n){
-            System.out.print(i + " ");
             list.add(i);
         }
 
