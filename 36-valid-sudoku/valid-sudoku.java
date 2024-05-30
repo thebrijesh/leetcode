@@ -1,6 +1,5 @@
 class Solution {
     public boolean isValidSudoku(char[][] board) {
-        display(board);
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 char num = board[i][j];
@@ -29,19 +28,19 @@ class Solution {
         return true;
     }
 
-    public void display(char[][] board) {
-        int count = 0;
-        int count1 = 0;
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[i].length; j++) {
+    // public void display(char[][] board) {
+    //     int count = 0;
+    //     int count1 = 0;
+    //     for (int i = 0; i < board.length; i++) {
+    //         for (int j = 0; j < board[i].length; j++) {
 
-                System.out.print(board[i][j] + " ");
-                count++;
+    //             System.out.print(board[i][j] + " ");
+    //             count++;
 
-                System.out.print("| ");
+    //             System.out.print("| ");
 
-            }
-            System.out.println();
-        }
-    }
+    //         }
+    //         System.out.println();
+    //     }
+    // }
 }
