@@ -9,7 +9,6 @@ class Solution {
        while(((1 << i) & xor )== 0){
         i++;
        }
-        System.out.print(i);
 
         for(int j = 0; j < nums.length; j++){
             if(((1 << i) & nums[j] )== 0){
