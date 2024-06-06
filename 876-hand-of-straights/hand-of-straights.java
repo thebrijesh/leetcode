@@ -31,7 +31,6 @@ class Solution {
             pq.add(new Card(key, map.get(key)));
         }
 
-        System.out.println(map);
         while (!pq.isEmpty()) {
             Card ca = pq.remove();
             ca.freq--;
