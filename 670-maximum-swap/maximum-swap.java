@@ -11,7 +11,6 @@ class Solution {
             if (digits[i] < digits[end]){
                 res = new int[]{i, end};
             }
-            System.out.println(Arrays.toString(res));
         }
         if (res[0] != res[1]){
             char temp = digits[res[1]];
