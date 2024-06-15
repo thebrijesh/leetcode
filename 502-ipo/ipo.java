@@ -7,7 +7,6 @@ class Solution {
             projects[i][1] = profits[i];
         }
         Arrays.sort(projects, (a, b) -> Integer.compare(a[0], b[0]));
-        for(int[] arr :projects )System.out.print(Arrays.toString(arr) + " ");
 
         int i = 0;
         PriorityQueue<Integer> maximizeCapital = new PriorityQueue<>(Collections.reverseOrder());
