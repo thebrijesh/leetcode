@@ -1,33 +1,33 @@
 class Solution {
-    public int minFallingPathSum(int[][] grid) {
-        Integer[][] dp = new Integer[grid.length + 1][grid[0].length];
-        int ans = Integer.MAX_VALUE;
-        for (int raw = 0; raw < grid.length; raw++)
-            ans = Math.min(ans, (helperRecursiveDP(grid, dp, 0, raw, grid.length)));
-        // finding answers for each column of first row seperatly and storing the
-        // minimum value in variable ans
-        return ans;
-    }
-
-    // helper function which computes the result for each column in row 1
-    private int helperRecursiveDP(int[][] grid, Integer[][] dp, int raw, int col, int n) {
-        if (col >= n || col < 0) // base-case 1
-            return (int) Math.pow(10, 7);
-
-        if (raw == n - 1)
-            return grid[raw][col]; // base-case 2
-
-        if (dp[raw][col] != null)
-            return dp[raw][col]; // avoiding repetitive steps by returning previously calculated ans
-
-        // Traversing path according to the question
-        int x = grid[raw][col] + helperRecursiveDP(grid, dp, raw + 1, col, n);
-        int y = grid[raw][col] + helperRecursiveDP(grid, dp, raw + 1, col + 1, n);
-        int z = grid[raw][col] + helperRecursiveDP(grid, dp, raw + 1, col - 1, n);
-
-        int ans = Math.min(x, Math.min(y, z)); // finding min of values returned by three traversed paths
-        dp[raw][col] = ans;
-
-        return ans;
+    public int minFallingPathSum(int[][] A) {
+        int dp[][] = new int[A.length][A.length];
+        int min = Integer.MAX_VALUE;
+        for(int i = 0; i < A.length; i++)
+        {
+            dp[0][i] = A[0][i];
+        }
+        for(int i = 1; i < A.length; i++)
+        {
+            for(int j = 0; j < A.length; j++)
+            {
+                if(j == 0)
+                {
+                    dp[i][j] = A[i][j] + Math.min(dp[i-1][j], dp[i-1][j+1]);
+                }
+                else if(j == A.length - 1)
+                {
+                    dp[i][j] = A[i][j] + Math.min(dp[i-1][j-1], dp[i-1][j]);
+                }
+                else
+                {
+                    dp[i][j] = A[i][j] + Math.min(Math.min(dp[i-1][j-1], dp[i-1][j]), dp[i-1][j+1]);
+                }
+            }
+        }
+        for(int i = 0; i < A.length; i++)
+        {
+            if(dp[A.length-1][i] < min)  min = dp[A.length-1][i];
+        }
+        return min;
     }
 }
