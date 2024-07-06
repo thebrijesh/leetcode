@@ -1,21 +1,23 @@
 class Solution {
     public int chalkReplacer(int[] chalk, int k) {
-       
-        long sum = 0;
+        // Calculate the total sum of chalk requirements
+        long totalChalk = 0;
         for (int i = 0; i < chalk.length; i++) {
-            sum += chalk[i];
+            totalChalk += chalk[i];
         }
-        k %= sum;
-       
+        
+        // Reduce k by the total sum of chalk to find the remainder
+        k %= totalChalk;
 
-        for(int i = 0; i < chalk.length; i++){
-            if(k - chalk[i] > -1){
-                 k = k - chalk[i];
-            }else {
+        // Find the student who will need to be replaced
+        for (int i = 0; i < chalk.length; i++) {
+            if (k < chalk[i]) {
                 return i;
             }
-           
+            k -= chalk[i];
         }
+        
+        // In case no student is found, return 0 (though this should never happen given the problem constraints)
         return 0;
     }
 }
