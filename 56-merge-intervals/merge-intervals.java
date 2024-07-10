@@ -1,25 +1,56 @@
 class Solution {
     public int[][] merge(int[][] intervals) {
-        List<int[]> answer = new ArrayList<>();
-        
-        if(intervals.length != 0 || intervals != null){
-            Arrays.sort(intervals, (a,b) -> a[0] - b[0]);
-            
-            int start = intervals[0][0];
-            int end = intervals[0][1];
-            for(int[] i: intervals){
-                if(i[0] <= end){
-                    end = Math.max(end, i[1]);
-                } else {
-                    answer.add(new int[]{start,end});
-                    start = i[0];
-                    end = i[1];
-                }
-            }
-            answer.add(new int[]{start,end}); 
-            
+        if (intervals.length == 1) {
+            return intervals;
         }
-        
-        return answer.toArray(new int[0][]); 
+
+        int max = 0;
+        for (int i = 0; i < intervals.length; i++) {
+            max = Math.max(intervals[i][0], max);
+        }
+
+        if (max == 0) {
+            return new int[][] { intervals[0] };
+        }
+
+        int[] timeTable = new int[max + 1];
+        for (int i = 0; i < intervals.length; i++) {
+            int startTime = intervals[i][0];
+            int endTime = intervals[i][1];
+            timeTable[startTime] = Math.max(endTime + 1, timeTable[startTime]);
+        }
+
+        int resultSize = 0;
+        int currEnd = -1;
+        int currStart = -1;
+
+        for (int i = 0; i < timeTable.length; i++) {
+            if (timeTable[i] != 0) {
+                if (currStart == -1) {
+                    currStart = i;
+                }
+                currEnd = Math.max(timeTable[i] - 1, currEnd);
+            }
+            if (currEnd == i) {
+                intervals[resultSize++] = new int[] { currStart, currEnd };
+                currEnd = -1;
+                currStart = -1;
+            }
+        }
+
+        if (currStart != -1) {
+            intervals[resultSize++] = new int[] { currStart, currEnd };
+        }
+
+        if (intervals.length == resultSize) {
+            return intervals;
+        }
+
+        int[][] res = new int[resultSize][];
+        for (int i = 0; i < resultSize; i++) {
+            res[i] = intervals[i];
+        }
+
+        return res;
     }
 }
