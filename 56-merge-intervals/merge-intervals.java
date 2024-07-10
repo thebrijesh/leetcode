@@ -1,36 +1,34 @@
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.List;
 
 class Solution {
     public int[][] merge(int[][] intervals) {
-        if (intervals.length <= 1) {
-            return intervals;
-        }
+        List<int[]> mergedIntervals = new ArrayList<>();
 
-        // Sort intervals by start time
-        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        if (intervals != null && intervals.length != 0) {
+            // Sort intervals by start time
+            Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
 
-        // Use a LinkedList to store the merged intervals
-        LinkedList<int[]> mergedIntervals = new LinkedList<>();
+            int start = intervals[0][0];
+            int end = intervals[0][1];
 
-        // Initialize with the first interval
-        mergedIntervals.add(intervals[0]);
-
-        for (int i = 1; i < intervals.length; i++) {
-            int[] lastInterval = mergedIntervals.getLast();
-            int[] currentInterval = intervals[i];
-
-            // Check if there is an overlap
-            if (lastInterval[1] >= currentInterval[0]) {
-                // Merge the intervals
-                lastInterval[1] = Math.max(lastInterval[1], currentInterval[1]);
-            } else {
-                // No overlap, add the current interval to the list
-                mergedIntervals.add(currentInterval);
+            for (int[] interval : intervals) {
+                if (interval[0] <= end) {
+                    // Overlapping intervals, move the end if needed
+                    end = Math.max(end, interval[1]);
+                } else {
+                    // Non-overlapping interval, add the previous interval and reset bounds
+                    mergedIntervals.add(new int[]{start, end});
+                    start = interval[0];
+                    end = interval[1];
+                }
             }
+            // Add the last interval
+            mergedIntervals.add(new int[]{start, end});
         }
 
-        // Convert LinkedList to array
-        return mergedIntervals.toArray(new int[mergedIntervals.size()][]);
+        // Convert the list to an array
+        return mergedIntervals.toArray(new int[0][]);
     }
 }
