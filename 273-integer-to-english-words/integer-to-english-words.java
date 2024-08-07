@@ -1,34 +1,33 @@
 class Solution {
-    private final String[] belowTen = new String[] {"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine","Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
- 
-    private final String[] belowHundred = new String[] {"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
-
     public String numberToWords(int num) {
-        if (num == 0)
-            return "Zero";
-        
-        return helper(num).trim();
+        if(num == 0) return "Zero";
+        String[] numbers = new String[] {"", "One ", "Two ", "Three ", "Four ", "Five ", "Six ", "Seven ", "Eight ", "Nine ", "Ten ", "Eleven ", "Twelve ", "Thirteen ", "Fourteen ", "Fifteen ", "Sixteen ", "Seventeen ", "Eighteen ", "Nineteen "};
+        String[] ty = new String[] {"", "", "Twenty ", "Thirty ", "Forty ", "Fifty ", "Sixty ", "Seventy ", "Eighty ", "Ninety "};
+        return helper(num, 0, new StringBuilder(), numbers, ty).toString().trim();
     }
-
-    public String helper(int num){
-
-
-
-        StringBuilder str = new StringBuilder();
-        if(num >= 1000000000){
-            str.append(helper(num/1000000000)).append(" Billion ").append(helper(num % 1000000000));
-        }else if(num >= 1000000){
-            str.append(helper(num/1000000)).append(" Million ").append(helper(num % 1000000));
-        }else if(num >= 1000){
-            str.append(helper(num/1000)).append(" Thousand ").append(helper(num % 1000));
-        }else if(num >= 100){
-            str.append(helper(num/100)).append(" Hundred ").append(helper(num % 100));
-        }else if(num >= 20){
-            str.append(belowHundred[num/10]).append(" ").append(helper(num % 10));
-        }else{
-            str.append(belowTen[num]);
-        }
-
-        return str.toString().trim();
+    StringBuilder helper(int num, int stack, StringBuilder ans, String[] numbers, String[] ty) {
+        if(num/1000 != 0) ans = helper(num / 1000, stack + 1, ans, numbers, ty);
+        int number = num % 1000;
+        // System.out.println("On stack " + stack + " number is : " + number);
+        if(number == 0) return ans;
+        if(number / 100 != 0) {
+            ans.append(numbers[number / 100]);
+            ans.append("Hundred ");
+            number %= 100;
+        } 
+        if(number / 10 != 0 && number / 10 > 1) {
+            int val = number / 10;
+            if(val > 1 && val < 10) {
+                ans.append(ty[val]);
+                ans.append(numbers[number % 10]);
+            }
+            number %= 10;
+        } else ans.append(numbers[number]);
+            
+        if(stack == 3) ans.append("Billion ");
+        else if(stack == 2) ans.append("Million ");
+        else if(stack == 1) ans.append("Thousand ");
+        
+        return ans;
     }
 }
