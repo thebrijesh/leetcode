@@ -1,24 +1,19 @@
 class Solution {
     public int[] missingRolls(int[] rolls, int mean, int n) {
-        
-    	int i,m=rolls.length,sum=0;
-    	for(i=0;i<m;i++)
-    		sum+=rolls[i];
-			
-    	int x=(mean*(m+n))-sum;
-		
-		if(x<=0||n*6<x||((x/n)==0)) {
-    		return new int[] {};
-		}
-			
-    	int arr[]=new int[n];
-    	
-		int p=x/n,q=x%n;
-    	for(i=0;i<n;i++)  {
-		
-    		arr[i]=p+(q>0?1:0);
-    		q--;
-    	}
-    	return arr;
+        int sum = 0;
+        for(int val : rolls)sum += val;
+        int val = ((rolls.length + n) * mean) - sum;
+        if(val < n || val > n*6)return new int[0];
+        int avg = val / n;
+        int rem = val % n;
+        int[] result = new int[n];
+        for(int i = 0; i <n; i++){
+            result[i] = avg;
+            if(rem > 0){
+                result[i]++;
+                rem--;
+            }
+        }
+        return result;
     }
 }
