@@ -1,12 +1,13 @@
 class Solution {
     public int minSwaps(String s) {
-        int count = 0;
-        int ans = 0;
-        for(char c:s.toCharArray()){
-            if(c=='[') count++;
-            else if(count==0) ans++;
-            else count--;
+        int size = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if (ch == '[') 
+                size++;
+            else if (size > 0) 
+                size--;
         }
-        return (ans+1)/2;
+        return (size + 1) / 2;
     }
 }
