@@ -1,25 +1,22 @@
 class Solution {
-    public static List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> list = new ArrayList<>();
-        // Arrays.sort(nums); // not necessary
-        backtrack(list, new ArrayList<>(), nums);
-        return list;
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> permutation = new ArrayList<>();
+        function(new ArrayList<>(),nums,0,permutation);
+        return permutation;
     }
-
-    private static void backtrack(List<List<Integer>> list, List<Integer>   tempList, int [] nums){
-        if(tempList.size() == nums.length){
-            list.add(new ArrayList<>(tempList));
-            return;
-        } 
-            for(int i = 0; i < nums.length; i++){
-                if(tempList.contains(nums[i])) continue; // element already exists, skip
-                tempList.add(nums[i]);
-                backtrack(list, tempList, nums);
-                tempList.remove(tempList.size() - 1);
-                
+    static void function(ArrayList<Integer> ways, int[] nums,int index,List<List<Integer>> permutation){
+        ways = new ArrayList<>(ways);
+        if(ways.size()==nums.length){
+            permutation.add(ways);
+        }
+        else{
+            for(int i = 0; i<=ways.size();i++){
+                ways.add(i,nums[index]);
+                function(ways, nums, ++index,permutation);
+                ways.remove(i);
+                index = index-1;
             }
-       
+        }
+  
     }
-
-
 }
