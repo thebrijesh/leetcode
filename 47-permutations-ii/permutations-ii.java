@@ -1,25 +1,24 @@
 class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
-        List<List<Integer>> ans = new ArrayList<>();
-        Arrays.sort(nums);
-        permu(ans, new ArrayList<>(), nums, new boolean[nums.length]);
-        return ans;
+        Set<List<Integer>> result = new HashSet<>();
+        permuteUnique(nums, new ArrayList<>(), new HashMap<Integer, Integer>(), result);
+        return new ArrayList<>(result);
     }
 
-    private void permu(List<List<Integer>> ans, List<Integer> subans, int[] nums, boolean[] b) {
-        if(subans.size() == nums.length){
-            ans.add(new ArrayList<>(subans));
-        } else {
-            for(int i = 0; i < nums.length; i++) {
-                if(b[i] || i > 0 && nums[i] == nums[i-1] && !b[i - 1]){
-                    continue;
+    private void permuteUnique(int[] nums, List<Integer> combo, Map<Integer, Integer> indexes, Set<List<Integer>> result) {
+        if (combo.size() == nums.length) {
+            result.add(new ArrayList<>(combo));
+            return;
+        } 
+            for (int i = 0; i < nums.length; i++) {
+                if (!indexes.containsKey(i)) {
+                    combo.add(nums[i]);
+                    indexes.put(i, 1);
+                    permuteUnique(nums, combo, indexes, result);
+                    combo.remove(combo.size() - 1);
+                    indexes.remove(i);
                 }
-                b[i] = true;
-                subans.add(nums[i]);
-                permu(ans, subans, nums, b);
-                b[i] = false;
-                subans.remove(subans.size() - 1);
             }
-        }
+        
     }
 }
