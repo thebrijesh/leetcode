@@ -16,7 +16,7 @@ class Solution {
         }
 
         for (int row = 0; row < edgeLength; row++) {
-            for (int col = row+1; col < edgeLength; col++) {
+            for (int col = row; col < edgeLength; col++) {
                 int temp = matrix[row][col];
                 matrix[row][col] = matrix[col][row];
                 matrix[col][row] = temp;
