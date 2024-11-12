@@ -1,32 +1,22 @@
 class Solution {
     public int[] maximumBeauty(int[][] items, int[] queries) {
-        Arrays.sort(items, Comparator.comparingInt(a -> a[0]));
-
-        // Step 2: Sort queries with their original indices
-        int[][] queriesWithIndex = new int[queries.length][2];
-        for (int i = 0; i < queries.length; i++) {
-            queriesWithIndex[i][0] = queries[i];
-            queriesWithIndex[i][1] = i;
-        }
-        Arrays.sort(queriesWithIndex, Comparator.comparingInt(a -> a[0]));
-
-        int[] result = new int[queries.length];
-        int maxBeauty = 0;
-        int i = 0;
-
-        for (int[] queryWithIndex : queriesWithIndex) {
-            int query = queryWithIndex[0];
-            int index = queryWithIndex[1];
-
-            // Move through items that are within the current query's price range
-            while (i < items.length && items[i][0] <= query) {
-                maxBeauty = Math.max(maxBeauty, items[i][1]);
-                i++;
+        Arrays.sort(items, (a, b) -> a[0] == b[0] ? b[1] - a[1] : a[0] - b[0]);
+        int currMaxBeauty = 0;
+        TreeMap<Integer, Integer> m = new TreeMap<>();
+        for (int[] item : items) {
+            if (item[1] <= currMaxBeauty) {
+                continue;
             }
-
-            // Store the max beauty for this query
-            result[index] = maxBeauty;
+            currMaxBeauty = item[1];
+            m.put(item[0], currMaxBeauty);
         }
-        return result;
+        int[] res = new int[queries.length];
+        for (int i = 0; i < queries.length; i++) {
+            Map.Entry<Integer, Integer> entry = m.floorEntry(queries[i]);
+            if (entry != null) {
+                res[i] = entry.getValue();   
+            }
+        }
+        return res;
     }
 }
