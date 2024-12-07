@@ -1,20 +1,37 @@
 class Solution {
-  public long minimumTime(int[] time, int totalTrips) {
-    long l = 1;
-    long r = Arrays.stream(time).min().getAsInt() * (long) totalTrips;
+    public long minimumTime(int[] time, int totalTrips) {
+        int min = Integer.MAX_VALUE;
+        for (int t : time) {
+            min = Math.min(min, t);
+        }
 
-    while (l < r) {
-      final long m = (l + r) / 2;
-      if (numTrips(time, m) >= totalTrips)
-        r = m;
-      else
-        l = m + 1;
+        long start = min;
+        long end = (long) min * totalTrips;
+
+        while (start < end) {
+            long mid = start + (end - start) / 2;
+
+            if (isEnough(mid, time, totalTrips)) {
+                end = mid;
+            } else {
+                start = mid + 1;
+            }
+        }
+
+        return start;
     }
 
-    return l;
-  }
+    private boolean isEnough(long elapsed, int[] times, int totalTrips) {
+        long res = 0;
 
-  private long numTrips(int[] time, long m) {
-    return Arrays.stream(time).asLongStream().reduce(0L, (subtotal, t) -> subtotal + m / t);
-  }
+        for (int time : times) {
+            res += (long) ((double) elapsed / time);
+
+            if (res >= totalTrips) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
