@@ -1,21 +1,23 @@
 class Solution {
-    public int minimumSize(int[] nums, int maxOperations) {
-        Arrays.sort(nums);
-        int a=1,b=1_000_000_000;
-        while(a<=b) {
-            int mid=(a+b)>>1;
-            if(check(mid,maxOperations,nums)) b=mid-1;
-            else a=mid+1;
+    public int minimumSize(int[] nums, int maxOp) {
+        int high = 0;
+        for(int i: nums){
+            if(high < i) high = i;
         }
-        return a;
-    }
-    boolean check(int mid, int maxOperations, int[] nums) {
-        int op=0;
-        for(int i=nums.length-1;i>-1&&op<=maxOperations;i--) {
-            int next=nums[i];
-            if(next<=mid) return true;
-            op+=(next-1)/mid;
+        int low =1,  ans = -1;
+        while(low<= high){
+            int mid= (low+high)/2, sum = 0;
+            for(int i: nums){
+                sum+= (i-1)/mid;
+            }
+            if(sum<= maxOp){
+                high = mid-1;
+                ans = mid;
+            }
+            else{
+                low = mid+1;
+            }
         }
-        return op<=maxOperations;
+        return ans;
     }
 }
