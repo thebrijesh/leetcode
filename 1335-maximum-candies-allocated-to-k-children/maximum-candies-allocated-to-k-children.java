@@ -1,51 +1,57 @@
 class Solution {
 
-    private static final int MAX_CANDIES = 10_000_000;
+    /**
+     * Checks whether it is possible to distribute 'val' candies to at least 'm' children.
+     *
+     * @param candies Array of available candies
+     * @param candiesPerChild Number of candies to distribute per child
+     * @param numChildren Number of children to be served
+     * @return true if distribution is possible, false otherwise
+     */
+    private boolean canDistributeCandies(int[] candies, int candiesPerChild, long numChildren) {
+        long childrenServed = 0;
+        for (int candy : candies) {
+            // Calculate how many children can be served from the current candy pile
+            childrenServed += candy / candiesPerChild;
+        }
+        return childrenServed >= numChildren;
+    }
 
     /**
      * Finds the maximum number of candies that can be distributed equally among k children.
      *
      * @param candies Array of available candies
-     * @param k The number of children
+     * @param k Number of children
      * @return Maximum number of candies each child can get
      */
     public int maximumCandies(int[] candies, long k) {
-        int left = 1;
-        int right = MAX_CANDIES;
-        int maxCandiesPerChild = 0;
+        long totalCandies = 0;
+        int minCandiesPerChild = 1;
 
-        // Binary search to find the optimal number of candies per child
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
+        // Calculate the total number of candies
+        for (int candy : candies) {
+            totalCandies += candy;
+        }
 
-            // Calculate the number of children that can be served with the current mid value
-            long childrenCount = calculateChildrenCount(candies, mid);
+        // If the total candies are less than the required number of children, return 0
+        if (totalCandies < k) {
+            return 0;
+        }
 
-            // If we can serve at least k children, try to increase candies per child
-            if (childrenCount >= k) {
-                maxCandiesPerChild = mid;
-                left = mid + 1;
+        int maxCandiesPerChild = (int) (totalCandies / k); // Maximum possible candies per child
+
+        // Binary search to find the maximum number of candies per child
+        while (minCandiesPerChild <= maxCandiesPerChild) {
+            int midCandiesPerChild = minCandiesPerChild + (maxCandiesPerChild - minCandiesPerChild) / 2;
+
+            // Check if it is possible to distribute midCandiesPerChild to all children
+            if (canDistributeCandies(candies, midCandiesPerChild, k)) {
+                minCandiesPerChild = midCandiesPerChild + 1;  // Try for a higher value
             } else {
-                // Otherwise, reduce the number of candies per child
-                right = mid - 1;
+                maxCandiesPerChild = midCandiesPerChild - 1;  // Try for a lower value
             }
         }
 
         return maxCandiesPerChild;
-    }
-
-    /**
-     * Calculates the number of children that can be served with the given number of candies per child.
-     *
-     * @param candies Array of available candies
-     * @param candiesPerChild The number of candies to give to each child
-     * @return The number of children that can be served
-     */
-    private long calculateChildrenCount(int[] candies, int candiesPerChild) {
-        long childrenCount = 0;
-        for (int candy : candies) {
-            childrenCount += candy / candiesPerChild;
-        }
-        return childrenCount;
     }
 }
