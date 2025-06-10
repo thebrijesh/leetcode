@@ -1,21 +1,37 @@
 class Solution {
-    public void rotate(int[] nums, int k) {
-        k %= nums.length;
-        reverce(nums,0,nums.length-1);
-        reverce(nums,0,k-1);
-        reverce(nums,k,nums.length-1);
 
-        
+    /**
+     * Rotates the given array to the right by k steps.
+     *
+     * @param nums The input array to rotate.
+     * @param k Number of steps to rotate the array.
+     */
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+        k %= n; // In case k is greater than array length
+
+        // Step 1: Reverse the entire array
+        reverse(nums, 0, n - 1);
+        // Step 2: Reverse the first k elements
+        reverse(nums, 0, k - 1);
+        // Step 3: Reverse the remaining elements
+        reverse(nums, k, n - 1);
     }
 
-    public void reverce(int[] nums,int firstIndex, int lastIndex){
-        for(int i = firstIndex; i < lastIndex; i++){
-            int temp = nums[i];
-            nums[i] = nums[lastIndex];
-            nums[lastIndex] = temp;
-            lastIndex--;
+    /**
+     * Reverses the elements of the array between the given indices.
+     *
+     * @param nums The array whose elements are to be reversed.
+     * @param left The starting index of the range to reverse.
+     * @param right The ending index of the range to reverse.
+     */
+    private void reverse(int[] nums, int left, int right) {
+        while (left < right) {
+            int temp = nums[left];
+            nums[left] = nums[right];
+            nums[right] = temp;
+            left++;
+            right--;
         }
     }
-
-    
 }
